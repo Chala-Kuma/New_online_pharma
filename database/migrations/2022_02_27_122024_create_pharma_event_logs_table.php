@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pharma_event_logs', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('pharmaid');
             $table->string('pharma_event_action');
             $table->string('pharma_event_detail');

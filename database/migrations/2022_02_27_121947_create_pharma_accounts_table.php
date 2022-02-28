@@ -14,10 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::create('pharma_accounts', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('pharmaid');
             $table->string('username')->unique();
             $table->string('email');
             $table->string('password');
+            $table->rememberToken();
             $table->string('pharma_last_login')->nullable();
             $table->string('pharma_last_logout')->nullable();
             $table->timestamps();

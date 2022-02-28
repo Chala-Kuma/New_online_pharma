@@ -58,7 +58,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        //
+        // returning admin by id
+        return new AdminResource(Admin::find($id));
     }
 
     /**

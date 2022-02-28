@@ -14,6 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('customer_event_logs', function (Blueprint $table) {
+            $table->id();
             $table->unsignedBigInteger('customerid');
             $table->string('customer_event_action');
             $table->string('customer_event_detail');

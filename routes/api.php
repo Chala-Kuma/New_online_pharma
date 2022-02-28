@@ -14,9 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/admin', [AdminController::class, 'index']);
-Route::post('/admin', [AdminController::class, 'store']);
-
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('/admin', [AdminController::class, 'index']);
+Route::get('/admin/{id}', [AdminController::class, 'show']);
+Route::post('/admin', [AdminController::class, 'store']);

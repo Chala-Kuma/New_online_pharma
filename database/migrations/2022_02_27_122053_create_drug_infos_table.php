@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('drug_infos', function (Blueprint $table) {
-            $table->bigIncrements('drugid');
+            $table->id('drugid');
             $table->unsignedBigInteger('pharmaid');
             $table->string('drug_name');
             $table->dateTime('expr_date');

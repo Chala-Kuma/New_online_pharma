@@ -19,7 +19,22 @@ class Admin extends Model
         'username',
         'email',
         'phone',
-        'password'
+        'password',
+        'remember_token',
+        'admin_last_login',
+        'admin_last_logout'
     ];
 
+    protected $hidden=[
+        'password',
+        'remember_token'
+    ];
+
+    public function adminEventLog(){
+        return $this->hasMany(AdminEventLog::class, 'adminid','adminid');
+    }
+
+    public function pharmaInfo(){
+        return $this->hasMany(PharmaInfo::class, 'adminid','adminid');
+    }
 }
