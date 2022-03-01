@@ -22,4 +22,8 @@ class DrugInfo extends Model
         'description',
         'price'
     ];
+
+    public function pharmaInfo(){
+        return $this->belongsToMany(PharmaInfo::class, 'drug_info_pharma_info','drugid', 'pharmaid');
+    }
 }

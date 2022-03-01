@@ -17,6 +17,7 @@ class CustomerInfo extends Model
     //defining fillable properties of customer info
     protected $filllable=[
         'first_name',
+        'Middle_name',
         'last_name',
         'location',
         'age',

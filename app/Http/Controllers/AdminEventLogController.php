@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\AdminResource;
-use App\Models\Admin;
+use App\Http\Resources\AdminEventLogResource;
+use App\Models\AdminEventLog;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
 
-class AdminController extends Controller
+class AdminEventLogController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +15,8 @@ class AdminController extends Controller
      */
     public function index()
     {
-        //returning all admin
-        return Admin::all();
+        //returning all admin event log
+        return AdminEventLog::all();
     }
 
     /**
@@ -28,26 +27,22 @@ class AdminController extends Controller
      */
     public function store(Request $request)
     {
-        //validating the data
+        //
         $request->validate([
-            'username'=>'required|string|unique:App\Models\Admin,username',
-            'email'=>'required|email|unique:App\Models\Admin,email',
-            'phone'=>'required|string|unique:App\Models\Admin,phone',
-            'password'=>'required|string|confirmed',
-        ]);
-       //creating instance of admin
-        $data = new Admin([
-            'username'=>$request->get('username'),
-            'email'=>$request->get('email'),
-            'phone'=>$request->get('phone'),
-            'password'=>Hash::make($request->get('password'))
+            'adminid'=> 'required|integer|exists:App\Models\Admin,adminid',
+            'admin_event_action'=> 'required|string|',
+            'admin_event_detail'=> 'required|string|'
         ]);
 
-        //saving instance of admin
+        $data = new AdminEventLog([
+            'adminid'=>$request->get('adminid'),
+            'admin_event_action'=>$request->get('admin_event_action'),
+            'admin_event_detail'=>$request->get('admin_event_detail')
+        ]);
+
         $data->save();
 
-        //returning instance of admin
-        return new AdminResource($data);
+        return new AdminEventLogResource($data);
     }
 
     /**
@@ -58,8 +53,8 @@ class AdminController extends Controller
      */
     public function show($id)
     {
-        // returning admin by id
-        return Admin::find($id);
+        //
+        return new AdminEventLogResource(AdminEventLog::find($id));
     }
 
     /**

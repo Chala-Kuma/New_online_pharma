@@ -31,4 +31,8 @@ class PharmaInfo extends Model
     public function pharmaEventLog(){
         return $this->hasMany(PharmaEventLog::class, 'pharmaid','pharmaid');
     }
+
+    public function drugInfo(){
+        return $this->belongsToMany(DrugInfo::class, 'drug_info_pharma_info','pharmaid', 'drugid');
+    }
 }
